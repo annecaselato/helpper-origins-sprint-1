@@ -5,27 +5,28 @@ let list: Array<any> = [
     {"id" : 4, "name": "Nicolau Copérnico", "bio": "Nicolau Copérnico foi um astrônomo e matemático polonês que desenvolveu a teoria heliocêntrica do Sistema Solar."}];
 
 //Função que retorna a bio do id passado
-function getBio(givenId: number) {
+function getBioFnct(givenId: number) {
     let bio: string = list.find(i => i.id === givenId)?.bio;
     return bio;
 }
 
 //Função que retorna o name do id passado
-function getName(givenId: number) {
+function getNameFnct(givenId: number) {
     let name: string = list.find(i => i.id === givenId)?.name;
     return name;
 }
 
 //Função que apaga o item do id passado
-function deleteItem(givenId: number) {
-    let list2 = list.filter(i => i.id !==givenId);
-    return list2;
+function deleteItemFnct(givenId: number) {
+    let newList: Array<any> = list.filter(i => i.id !==givenId);
+    return newList;
 }
-//Função que permite alterar o name ou a bio do id passado
 
-//
-//let readline = require('readline-sync');
-//let id = readline.question("Insira a id: ");
-console.log("bio : " + getBio(5));
-console.log("name: " + getName(2));
-console.log(deleteItem(2));
+//Função que permite alterar o name ou a bio do id passado
+function updateItemFnct(givenId: number, newName: string, newBio: string) {
+    let objIndex: number = list.findIndex((obj => obj.id == 1));
+    let newList: Array<any> = list;
+    newList[objIndex].name = newName;
+    newList[objIndex].bio = newBio;
+    return newList;
+}
