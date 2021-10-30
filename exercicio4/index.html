@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 4</title>
+</head>
+<body onload="makeTable(tableList)">
+    <h1>Exercício 4</h1>
+    <table id="tb">
+
+    </table>
+    <form action="">
+        Deletar item: <input type="text" name="fname" placeholder = "ID" id="fDeleteId">
+        <button type="button" onclick="deleteItem()">Deletar</button><br>
+        ID: <input type="text" name="fname" placeholder = "ID" id="fChangeId">
+        Name: <input type="text" name="fname" placeholder = "Novo Nome" id="fChangeName">
+        Bio: <input type="text" name="fname" placeholder = "Nova Bio" id="fChangeBio">
+        <button type="button" onclick="updateItem()">Alterar</button><br>
+    </form>
+    <script src="exercicio.js"></script>
+</body>
+</html>
