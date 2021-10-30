@@ -10,6 +10,6 @@ function countVowels(word: string) {
 
 //Função para processar o input do formulário e mostrar o resultado
 function formResult() {
-    const promptedWord = (<HTMLInputElement>document.getElementById("word")).value;
+    const promptedWord: string = (<HTMLInputElement>document.getElementById("word")).value;
     document.getElementById("result")!.innerHTML = countVowels(promptedWord).toString();
 }
