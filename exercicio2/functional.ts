@@ -6,19 +6,19 @@ let list: Array<any> = [
 
 //Função que retorna a bio do id passado
 function getBioFnct(givenId: number) {
-    let bio: string = list.find(i => i.id === givenId)?.bio;
+    let bio: string = list.find(obj => obj.id === givenId)?.bio;
     return bio;
 }
 
 //Função que retorna o name do id passado
 function getNameFnct(givenId: number) {
-    let name: string = list.find(i => i.id === givenId)?.name;
+    let name: string = list.find(obj => obj.id === givenId)?.name;
     return name;
 }
 
 //Função que apaga o item do id passado
 function deleteItemFnct(givenId: number) {
-    let newList: Array<any> = list.filter(i => i.id !==givenId);
+    let newList: Array<any> = list.filter(obj => obj.id !==givenId);
     return newList;
 }
 
