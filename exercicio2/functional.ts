@@ -1,4 +1,10 @@
-let list: Array<any> = [
+interface Person {
+    id: number;
+    name: string;
+    bio: string;
+}
+
+let peopleList: Array<Person> = [
     {"id" : 1, "name": "Ada Lovelace", "bio" : "Ada Lovelace, foi uma matemática e escritora inglesa reconhecida por ter escrito o primeiro algoritmo para ser processado por uma máquina"},
     {"id" : 2, "name": "Alan Turing", "bio" : "Alan Turing foi um matemático, cientista da computação, lógico, criptoanalista, filósofo e biólogo teórico britânico, ele é amplamente considerado o pai da ciência da computação teórica e da inteligência artificia"},
     {"id" : 3, "name": "Nikola Tesla", "bio" : "Nikola Tesla foi um inventor, engenheiro eletrotécnico e engenheiro mecânico sérvio, mais conhecido por suas contribuições ao projeto do moderno sistema de fornecimento de eletricidade em corrente alternada."},
@@ -6,33 +12,42 @@ let list: Array<any> = [
 ];
 
 //Função que retorna a bio do id passado
-function getBioFnct(givenId: number) {
-    let bio: string = list.find(obj => obj.id === givenId)?.bio;
+function getBioByFunctional(list: Array<Person>, givenId: number): string {
+    let bio: string = '';
+    let index: number = list.findIndex(obj => obj.id === givenId);
+    if (index !== -1) {
+        bio = list.find(obj => obj.id === givenId)!.bio;
+    }
     return bio;
 }
 
 //Função que retorna o name do id passado
-function getNameFnct(givenId: number) {
-    let name: string = list.find(obj => obj.id === givenId)?.name;
+function getNameByFunctional(list: Array<Person>, givenId: number): string {
+    let name: string = '';
+    let index: number = list.findIndex(obj => obj.id === givenId);
+    if (index !== -1) {
+        name = list.find(obj => obj.id === givenId)!.name;
+    }
     return name;
 }
 
 //Função que apaga o item do id passado
-function deleteItemFnct(givenId: number) {
-    if (givenId >= list.length) {
-        return;
-    }
-    let newList: Array<any> = list.filter(obj => obj.id !==givenId);
-    return newList;
+function deleteItemByFunctional(list: Array<Person>, givenId: number): Array<Person> {
+    let outputList: Array<Person> = list.filter(obj => obj.id !== givenId);
+    return outputList;
 }
 
 //Função que permite alterar o name ou a bio do id passado
-function updateItemFnct(givenId: number, newName: string, newBio: string) {
-    if (givenId >= list.length) {
-        return;
+function updateItemByFunctional(list: Array<Person>, givenId: number, newName?: string, newBio?: string): Array<Person> {
+    let index: number = list.findIndex(obj => obj.id === givenId);
+    let outputList: Array<Person> = list;
+    if (index !== -1) {
+        if (newName) {
+            outputList[index].name = newName;
+        }
+        if (newBio) {
+            outputList[index].bio = newBio;
+        }
     }
-    let newList: Array<any> = list;
-    newList[givenId - 1].name = newName;
-    newList[givenId - 1].bio = newBio;
-    return newList;
+    return outputList;
 }
