@@ -1,12 +1,13 @@
 //Função que retorna o maior valor, o menor valor e o valor médio de uma lista numérica recebida, utilizando o paradigma funcional
-function inspectListByFunctional(inputList: number[]): number[] { 
-    //Ordena a lista para encontrar os valores maior e menor
-    let sortedList: number[] = inputList.sort((n1, n2) => n1 - n2);
-    let minValue: number = sortedList [0];
-    let maxValue: number = sortedList [inputList.length - 1];
-    //Soma todos os valores e calcula o valor médio
-    let sum: number = inputList.reduce((a, b) => a + b, 0);
-    let avgValue: number = sum/inputList.length;
+function inspectListByFunctional(inputList: any[]): number[] { 
+    //Valida se a lista é numérica e converte string de números
+    let numberList: number[] = inputList.map(Number).filter(Boolean);
+    
+    //Encontra os valores máximo, mínimo e médio
+    let maxValue: number = Math.max(...numberList);
+    let minValue: number = Math.min(...numberList);
+    let sum: number = numberList.reduce((a, b) => a + b, 0);
+    let avgValue: number = sum/numberList.length;
     
     let outputList: number[] = [maxValue, minValue, avgValue];
     return outputList;

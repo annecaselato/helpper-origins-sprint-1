@@ -1,5 +1,13 @@
 //Função que retorna o maior valor, o menor valor e o valor médio de uma lista numérica, utilizando o paradigma imperativo
-function inspectListByImperative(inputList: number[]): number[] {
+function inspectListByImperative(inputList: any[]): number[] {
+    //Valida se a lista é numérica e converte string de números
+    for (let index = 0; index < inputList.length; index++) {
+        if (isNaN(+inputList[index])) {
+            inputList.splice(index, 1);
+        }
+        inputList[index] = +inputList[index];
+    }
+
     let maxValue: number = inputList[0];
     let minValue: number = inputList[0];
     let sum: number = 0;
