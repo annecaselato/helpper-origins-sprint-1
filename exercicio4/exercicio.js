@@ -4,6 +4,7 @@ var tableList = [
     { "id": 3, "name": "Nikola Tesla", "bio": "Nikola Tesla foi um inventor, engenheiro eletrotécnico e engenheiro mecânico sérvio, mais conhecido por suas contribuições ao projeto do moderno sistema de fornecimento de eletricidade em corrente alternada." },
     { "id": 4, "name": "Nicolau Copérnico", "bio": "Nicolau Copérnico foi um astrônomo e matemático polonês que desenvolveu a teoria heliocêntrica do Sistema Solar." }
 ];
+//This function generates a table from a given array
 function makeTable(list) {
     var tableString = "<tr>";
     for (var column in list[0]) {
@@ -19,20 +20,47 @@ function makeTable(list) {
     });
     document.querySelector('#tb').innerHTML = tableString;
 }
-//makeTable(tableList);
+//This function deletes a item from the table given an ID
 function deleteItem() {
+    //Get the ID from the form input and clear the field after
     var givenId = Number(document.getElementById("fDeleteId").value);
+    document.getElementById("edit-form").reset();
+    //Check if the ID is valid
+    var index = tableList.findIndex(function (obj) { return obj.id === givenId; });
+    if (index === -1) {
+        alert("ID inválida!");
+        return;
+    }
+    //Delete the item from the list and make a new table
     document.querySelector('#tb').innerHTML = "";
     tableList = tableList.filter(function (obj) { return obj.id !== givenId; });
     makeTable(tableList);
 }
+//This function edit a item from the list given an ID and the new values
 function updateItem() {
+    //Get information from the form and clear the fields after
     var givenId = Number(document.getElementById("fChangeId").value);
     var newName = document.getElementById("fChangeName").value;
     var newBio = document.getElementById("fChangeBio").value;
-    document.querySelector('#tb').innerHTML = "";
+    document.getElementById("edit-form").reset();
+    //Check if the ID is valid
     var index = tableList.findIndex(function (obj) { return obj.id === givenId; });
-    tableList[index].name = newName;
-    tableList[index].bio = newBio;
+    if (index === -1) {
+        alert("ID inválida!");
+        return;
+    }
+    //Erase the old table
+    document.querySelector('#tb').innerHTML = "";
+    //Update the name if a new one was given
+    if (newName)
+        tableList[index].name = newName;
+    //Update the biography if a new one was given
+    if (newBio)
+        tableList[index].bio = newBio;
+    //Make a new table
     makeTable(tableList);
 }
+window.onload = function () {
+    makeTable(tableList);
+    document.getElementById("edit-form").reset();
+};
